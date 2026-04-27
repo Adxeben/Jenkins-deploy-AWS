@@ -3,17 +3,20 @@ def buildJar() {
     sh "mvn clean package"
 } 
 
-def buildImage() {
-    echo "building the docker image..."
+def dockerImage() {
+    echo "creating the docker image..."
+    sh "docker build -t sunesis003/app-jenkins:2.0 ."
+} 
+def publishImage() {
+    echo "publishing to docker hub repo..."
     withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-        sh 'docker build -t sunesis003/app-jenkins:jma-2.0 .'
         sh "echo $PASS | docker login -u $USER --password-stdin"
-        sh 'docker push sunesis003/app-jenkins:jma-2.0'
+        sh "docker push sunesis003/app-jenkins:2.0"
     }
 } 
 
 def deployApp() {
-    echo 'deploying the application...'
+    echo "deploying the application..."
 } 
 
 return this
