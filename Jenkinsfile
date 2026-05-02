@@ -18,7 +18,6 @@ pipeline {
             steps {
                 script {
                     gv.buildJar()
-                    sh "docker --version"
                 }
             }
         }
