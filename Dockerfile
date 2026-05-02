@@ -17,7 +17,7 @@ RUN mvn clean package -DskipTests
 
 
 # ---------- Runtime Stage ----------
-FROM openjdk:8-jre-alpine
+FROM eclipse-temurin:8-jre
 
 WORKDIR /app
 
