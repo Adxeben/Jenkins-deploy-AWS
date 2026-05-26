@@ -1,6 +1,5 @@
 #!/usr/bin/env groovy
 
-@Library("Jenkins-shared-library")
 
 def gv
 
@@ -26,11 +25,6 @@ pipeline {
             }
         }
         stage("build jar") {
-            // when {
-            //     expression {
-            //         BRANCH_NAME == "master"
-            //     }
-            // }
             steps {
                 script {
                     gv.buildJar()
@@ -38,44 +32,20 @@ pipeline {
             }
         }
         stage("create image") {
-            // when {
-            //     expression {
-            //         BRANCH_NAME == "master"
-            //     }
-            // }
             steps {
                 script {
-                    buildDockerImage(
-                    imageName: "app-jenkins",
-                    imageTag: "5.0"
-                )
-                    // gv.createImage()
+                    gv.createImage()
                 }
             }
         }
         stage("publish image") {
-            // when {
-            //     expression {
-            //         BRANCH_NAME == "master"
-            //     }
-            // }
             steps {
                 script {
-                    dockerpublish(
-                        imageName: "sunesis003/app-jenkins",
-                        imageTag: "5.0",
-                        credentialsId: "docker-hub-repo"
-                    )
-                    // gv.publishImage()
+                    gv.publishImage()
                 }
             }
         }
         stage("deploy") {
-            // when {
-            //     expression {
-            //         BRANCH_NAME == "master"
-            //     }
-            // }
             steps {
                 script {
                     gv.deployApp()
