@@ -21,14 +21,14 @@ pipeline {
         stage("build jar") {
             steps {
                 script {
-                    buildJar()
+                    buildJar "sunesis003/app-jenkins:jsl-7.0"
                 }
             }
         }
         stage("create image") {
             steps {
                 script {
-                    createImage()
+                    createImage "sunesis003/app-jenkins:jsl-7.0"
                 }
             }
         }
