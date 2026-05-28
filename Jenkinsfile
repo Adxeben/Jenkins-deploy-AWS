@@ -35,7 +35,7 @@ pipeline {
         stage("publish image") {
             steps {
                 script {
-                    publishImage()"sunesis003/app-jenkins:param-7.0")
+                    publishImage("sunesis003/app-jenkins:param-7.0")
                 }
             }
         }
