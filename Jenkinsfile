@@ -21,21 +21,21 @@ pipeline {
         stage("build jar") {
             steps {
                 script {
-                    buildJar "sunesis003/app-jenkins:7.0"
+                    buildJar()
                 }
             }
         }
         stage("create image") {
             steps {
                 script {
-                    createImage "sunesis003/app-jenkins:7.0"
+                    createImage("sunesis003/app-jenkins:param-7.0")
                 }
             }
         }
         stage("publish image") {
             steps {
                 script {
-                    publishImage()
+                    publishImage()"sunesis003/app-jenkins:param-7.0")
                 }
             }
         }
